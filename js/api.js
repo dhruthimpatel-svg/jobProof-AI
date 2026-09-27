@@ -72,7 +72,6 @@
       state.connecting = true;
       return api.boot()
         .then(function (serverState) {
-          renderSyncCard();
           var local = JP.store.get();
           var serverEmpty = isStateEmpty(serverState);
           var localEmpty = isStateEmpty(local);
@@ -82,7 +81,6 @@
             // First time this workspace sees the server: upload local data.
             return api.saveState(snapshot(local)).then(function () {
               state.online = true;
-              noteSync("Uploaded this browser's data to the server.");
             });
           }
           if (!serverEmpty && stamp && stamp !== localStorage.getItem(STAMP_KEY) && !sessionStorage.getItem(RELOAD_KEY)) {
@@ -97,11 +95,9 @@
           if (!serverEmpty) {
             localStorage.setItem(STAMP_KEY, stamp || "");
           }
-          noteSync(null);
         })
         .catch(function () {
           state.online = false;
-          renderSyncCard();
         })
         .then(function () { state.connecting = false; });
     },
@@ -119,7 +115,6 @@
         .catch(function () {
           state.online = false;
           state.pending.push(patch);
-          renderSyncCard();
         });
     },
 
@@ -154,30 +149,6 @@
       if (!state.online) return Promise.resolve();
       return req("DELETE", "/api/state").catch(function () {});
     },
-
-    /* ---- link this browser to an existing workspace ---- */
-    linkWorkspace: function (code) {
-      code = String(code || "").trim().toUpperCase();
-      if (!/^[A-Z0-9-]{4,64}$/.test(code)) {
-        return Promise.reject({ userMessage: "That doesn't look like a workspace code (letters, digits, dashes)." });
-      }
-      state.workspaceId = code;
-      localStorage.setItem(WORKSPACE_KEY, code);
-      localStorage.removeItem(STAMP_KEY);
-      sessionStorage.removeItem(RELOAD_KEY);
-      return api.boot().then(function () {
-        location.reload();
-      });
-    },
-
-    unlinkWorkspace: function () {
-      localStorage.removeItem(WORKSPACE_KEY);
-      localStorage.removeItem(STAMP_KEY);
-      sessionStorage.removeItem(RELOAD_KEY);
-      state.workspaceId = null;
-      wsId();
-      location.reload();
-    },
   };
 
   function isStateEmpty(s) {
@@ -211,43 +182,6 @@
     }
     JP.store._data = merged;
     JP.store.save(); // persists to localStorage too (offline-safe)
-  }
-
-  function noteSync(msg) {
-    var el = document.getElementById("jp-sync-note");
-    if (el && msg) el.textContent = msg;
-  }
-
-  /* ---- Settings card: server sync status + device linking ---- */
-
-  function renderSyncCard() {
-    var wrap = document.querySelector(".settings-wrap");
-    if (!wrap || document.getElementById("jp-sync-card")) return;
-    var card = document.createElement("div");
-    card.className = "card";
-    card.id = "jp-sync-card";
-    var status = state.online
-      ? '<span class="status-pill is-verified">Server sync on</span>'
-      : '<span class="status-pill is-warn">Offline — working in-browser</span>';
-    card.innerHTML =
-      '<h2 class="card-title">Server &amp; sync</h2>' +
-      '<p class="card-sub">Your data lives on the JobProof server in workspace <strong>' +
-      String(state.workspaceId || "").replace(/</g, "&lt;") +
-      "</strong>. Use the same code on another device to open the same profile.</p>" +
-      '<p class="muted" id="jp-sync-note">' + (state.online ? "Connected — analysis and storage run on the backend." : "Server unreachable — the app keeps working locally and will sync when it's back.") + "</p>" +
-      '<div class="settings-actions">' +
-      '<input type="text" id="jp-link-code" placeholder="Workspace code, e.g. K7P2-M4XQ" style="max-width:260px" />' +
-      '<button class="btn btn-secondary btn-sm" id="jp-link-btn" type="button">Link device</button>' +
-      (state.online ? '<button class="btn btn-ghost btn-sm" id="jp-unlink-btn" type="button">New workspace</button>' : "") +
-      "</div>";
-    wrap.appendChild(card);
-    var linkBtn = card.querySelector("#jp-link-btn");
-    if (linkBtn) linkBtn.addEventListener("click", function () {
-      var code = card.querySelector("#jp-link-code").value;
-      api.linkWorkspace(code).catch(function (e) { JP.ui.toast(e.userMessage || "Could not link that workspace."); });
-    });
-    var unlinkBtn = card.querySelector("#jp-unlink-btn");
-    if (unlinkBtn) unlinkBtn.addEventListener("click", function () { api.unlinkWorkspace(); });
   }
 
   JP.api = api;

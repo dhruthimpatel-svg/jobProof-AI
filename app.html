@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobProof AI — Prove You're Ready</title>
+  <meta name="description" content="Understand your fit for a job, find what's missing, and know exactly what to fix before you apply." />
+
+  <link rel="icon" type="image/webp" href="assets/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="app.css?v=2" />
+  <link rel="stylesheet" href="features.css?v=1" />
+  <link rel="stylesheet" href="features-ct.css?v=1" />
+</head>
+<body class="app-body">
+
+  <div class="app-layout">
+
+    <!-- ================= Sidebar ================= -->
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <a class="sidebar-brand" href="index.html" aria-label="JobProof AI home">
+        <span class="sidebar-brand-mark"><img src="assets/logo.webp" alt="" width="22" height="22" /></span>
+        <span class="sidebar-brand-text">
+          <span class="sidebar-brand-name">JobProof AI</span>
+          <span class="sidebar-brand-sub">Prove you're ready</span>
+        </span>
+      </a>
+
+      <nav class="sidebar-nav" aria-label="Sections">
+        <a href="#home" class="nav-item is-active" data-view="home" aria-current="page">
+          <i class="fa-solid fa-house" aria-hidden="true"></i><span>Home</span>
+        </a>
+        <a href="#resume" class="nav-item" data-view="resume">
+          <i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>Resume</span>
+        </a>
+        <a href="#jobmatch" class="nav-item" data-view="jobmatch">
+          <i class="fa-solid fa-bullseye" aria-hidden="true"></i><span>Job Match</span>
+        </a>
+        <a href="#career" class="nav-item" data-view="career">
+          <i class="fa-solid fa-route" aria-hidden="true"></i><span>Career Readiness</span>
+        </a>
+        <a href="#target" class="nav-item" data-view="target">
+          <i class="fa-solid fa-bullseye" aria-hidden="true"></i><span>Company Target</span>
+        </a>
+        <a href="#applications" class="nav-item" data-view="applications">
+          <i class="fa-solid fa-folder-open" aria-hidden="true"></i><span>Applications</span>
+        </a>
+        <a href="#proof" class="nav-item" data-view="proof">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>Proof Center</span>
+        </a>
+        <a href="#settings" class="nav-item" data-view="settings">
+          <i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-foot">
+        <a href="#activity" class="privacy-line" data-view="activity" id="nav-activity">
+          <i class="fa-solid fa-wave-square" aria-hidden="true"></i>
+          <span>Agent Activity</span>
+        </a>
+        <div class="privacy-line">
+          <i class="fa-solid fa-lock" aria-hidden="true"></i>
+          <span>Your resume stays on this device.</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+
+    <!-- ================= Main ================= -->
+    <div class="app-main">
+
+      <header class="app-topbar">
+        <button class="icon-btn sidebar-toggle" id="sidebar-toggle" type="button"
+                aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <span class="topbar-brand">JobProof AI</span>
+        <span class="topbar-privacy" title="Your resume never leaves this device">
+          <i class="fa-solid fa-lock" aria-hidden="true"></i> On-device
+        </span>
+      </header>
+
+      <main class="workspace" id="workspace">
+
+        <!-- ============ HOME ============ -->
+        <section class="view is-active" id="view-home" data-view="home" aria-label="Home">
+          <div class="home-wrap">
+            <h1 class="home-greeting" id="home-greeting">Good evening</h1>
+            <p class="home-question">What role are you targeting?</p>
+
+            <div class="role-input-row">
+              <input class="role-input" id="role-input" type="text" inputmode="text"
+                     placeholder="AI/ML Engineer" autocomplete="off" spellcheck="false"
+                     aria-label="Target role" />
+            </div>
+
+            <div class="upload-card" id="upload-card"
+                 aria-label="Upload resume. PDF, DOCX or TXT.">
+              <div class="upload-idle" id="upload-idle">
+                <i class="fa-solid fa-cloud-arrow-up upload-icon" aria-hidden="true"></i>
+                <p class="upload-title">Upload Resume</p>
+                <p class="upload-hint">PDF, DOCX or TXT — or drop it anywhere on this card.</p>
+                <button class="btn btn-secondary" id="choose-file-btn" type="button">Choose file</button>
+                <input type="file" id="resume-file-input" accept=".pdf,.docx,.txt,.md" hidden />
+              </div>
+              <div class="upload-done" id="upload-done" hidden>
+                <i class="fa-solid fa-circle-check upload-done-icon" aria-hidden="true"></i>
+                <div class="upload-done-text">
+                  <p class="upload-done-title">Resume uploaded</p>
+                  <p class="upload-done-meta" id="upload-done-meta">✓ Ready to analyze</p>
+                </div>
+                <button class="btn btn-ghost btn-sm" id="replace-resume-btn" type="button">Replace</button>
+              </div>
+              <div class="upload-error" id="upload-error" hidden>
+                <p class="upload-error-text" id="upload-error-text"></p>
+                <button class="btn btn-ghost btn-sm" id="upload-retry-btn" type="button">Try another file</button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-lg" id="analyze-btn" type="button" disabled>
+              Analyze My Fit
+            </button>
+            <p class="home-note" id="home-note">Both a resume and a job description are needed. You can paste the job on the Job Match screen next.</p>
+          </div>
+        </section>
+
+        <!-- ============ RESUME ============ -->
+        <section class="view" id="view-resume" data-view="resume" aria-label="Resume" hidden>
+          <div class="screen-head">
+            <h1 class="screen-title">Resume</h1>
+            <div class="screen-actions">
+              <button class="btn btn-ghost btn-sm" id="resume-download-btn" type="button">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Download parsed text
+              </button>
+              <button class="btn btn-ghost btn-sm btn-danger-ghost" id="resume-delete-btn" type="button">
+                <i class="fa-regular fa-trash-can" aria-hidden="true"></i> Delete
+              </button>
+            </div>
+          </div>
+
+          <div class="resume-empty" id="resume-empty" hidden>
+            <p class="resume-empty-title">No resume yet</p>
+            <p class="resume-empty-text">Upload one on the Home screen. Parsing happens in your browser — the file never leaves your device.</p>
+            <button class="btn btn-secondary" id="resume-go-home" type="button">Go to Home</button>
+          </div>
+
+          <div class="resume-content" id="resume-content" hidden>
+            <div class="resume-summary-row" id="resume-stats"></div>
+
+            <div class="resume-grid">
+              <div class="card">
+                <h2 class="card-title">Structure</h2>
+                <ul class="section-list" id="resume-sections"></ul>
+              </div>
+              <div class="card">
+                <h2 class="card-title">Formatting checks</h2>
+                <ul class="risk-list" id="resume-risks"></ul>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2 class="card-title">Parsed content</h2>
+              <p class="card-sub">Exactly what we extracted — nothing added, nothing removed.</p>
+              <pre class="resume-raw" id="resume-raw"></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ JOB MATCH ============ -->
+        <section class="view" id="view-jobmatch" data-view="jobmatch" aria-label="Job Match" hidden>
+
+          <!-- --- Input panel --- -->
+          <div class="jm-input" id="jm-input">
+            <h1 class="screen-title">Job Match</h1>
+
+            <div class="jm-tabs" role="tablist" aria-label="Job input method">
+              <button class="jm-tab is-active" id="tab-paste" role="tab" aria-selected="true"
+                      aria-controls="panel-paste" type="button">Paste job description</button>
+              <button class="jm-tab" id="tab-details" role="tab" aria-selected="false"
+                      aria-controls="panel-details" type="button">Job URL / details</button>
+            </div>
+
+            <div class="jm-panel" id="panel-paste" role="tabpanel" aria-labelledby="tab-paste">
+              <textarea class="jd-textarea" id="jd-text" rows="10"
+                        placeholder="Paste the full job description here…" aria-label="Job description"></textarea>
+            </div>
+
+            <div class="jm-panel" id="panel-details" role="tabpanel" aria-labelledby="tab-details" hidden>
+              <p class="jm-panel-note">Many job sites block automated access. If we can't read the posting, we'll ask you to paste it — we won't invent job details.</p>
+              <div class="jm-detail-row">
+                <label class="field-label" for="jd-url">Job URL</label>
+                <input class="text-input" id="jd-url" type="url" placeholder="https://…" autocomplete="off" />
+              </div>
+              <div class="jm-detail-row">
+                <label class="field-label" for="jd-title">Job title</label>
+                <input class="text-input" id="jd-title" type="text" placeholder="AI/ML Engineer" autocomplete="off" />
+              </div>
+              <div class="jm-detail-row">
+                <label class="field-label" for="jd-company">Company</label>
+                <input class="text-input" id="jd-company" type="text" placeholder="Acme Inc." autocomplete="off" />
+              </div>
+            </div>
+
+            <div class="jm-actions">
+              <button class="btn btn-primary btn-lg" id="jm-analyze-btn" type="button">Analyze My Fit</button>
+              <label class="honest-toggle" title="Direct, no-flattery feedback">
+                <input type="checkbox" id="honest-toggle-input" />
+                <span class="honest-track" aria-hidden="true"><span class="honest-knob"></span></span>
+                <span class="honest-label">Brutally Honest <b id="honest-state">OFF</b></span>
+              </label>
+            </div>
+
+            <div class="jm-error" id="jm-error" hidden>
+              <p class="jm-error-text" id="jm-error-text"></p>
+            </div>
+          </div>
+
+          <!-- --- Progress --- -->
+          <div class="jm-progress" id="jm-progress" hidden>
+            <div class="progress-card">
+              <div class="progress-spinner" aria-hidden="true"></div>
+              <p class="progress-label" id="progress-label">Reading your resume…</p>
+              <div class="progress-bar"><span id="progress-fill"></span></div>
+            </div>
+          </div>
+
+          <!-- --- Results --- -->
+          <div class="jm-results" id="jm-results" hidden>
+
+            <div class="score-hero">
+              <div class="score-ring-wrap">
+                <svg class="score-ring" viewBox="0 0 120 120" aria-hidden="true">
+                  <circle class="score-ring-track" cx="60" cy="60" r="52" />
+                  <circle class="score-ring-fill" id="score-ring-fill" cx="60" cy="60" r="52" />
+                </svg>
+                <div class="score-value-wrap">
+                  <span class="score-value" id="score-value">0%</span>
+                  <span class="score-caption">Role Match</span>
+                </div>
+              </div>
+              <div class="score-side">
+                <p class="score-verdict" id="score-verdict"></p>
+                <p class="score-disclaimer" id="score-disclaimer"></p>
+                <button class="btn btn-ghost btn-sm" id="how-calc-btn" type="button" aria-expanded="false" aria-controls="score-breakdown">
+                  How is this calculated? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="score-breakdown" id="score-breakdown" hidden></div>
+              </div>
+            </div>
+
+            <div class="triage" id="triage">
+              <h2 class="section-heading">Where you stand</h2>
+              <div class="triage-grid" id="triage-grid"></div>
+            </div>
+
+            <div class="final-block" id="final-block">
+              <div class="card final-card">
+                <p class="final-label">Your application right now</p>
+                <p class="final-verdict" id="final-verdict"></p>
+                <div class="final-fixes">
+                  <p class="final-fixes-title">Fix these 3 things first</p>
+                  <ol class="fix-three" id="fix-three"></ol>
+                </div>
+                <button class="btn btn-secondary" id="see-all-gaps-btn" type="button">See all gaps</button>
+              </div>
+            </div>
+
+            <div class="honest-block card" id="honest-block" hidden>
+              <p class="honest-badge">Brutally Honest</p>
+              <p class="honest-headline" id="honest-headline"></p>
+              <div class="honest-body" id="honest-body"></div>
+              <ol class="honest-fix" id="honest-fix"></ol>
+            </div>
+
+            <div class="detail-sections" id="detail-sections" hidden>
+
+              <div class="card">
+                <h2 class="card-title">Match summary</h2>
+                <div class="match-buckets" id="match-buckets"></div>
+              </div>
+
+              <div class="card">
+                <h2 class="card-title">ATS analysis</h2>
+                <p class="card-sub" id="ats-summary"></p>
+                <ul class="ats-list" id="ats-list"></ul>
+              </div>
+
+              <div class="card">
+                <h2 class="card-title">Keyword analysis</h2>
+                <p class="card-sub">Grounded in this posting only. Adding a term you can't back up in an interview will hurt you.</p>
+                <div class="kw-groups" id="kw-groups"></div>
+              </div>
+
+              <div class="card">
+                <h2 class="card-title">Hiring Manager View</h2>
+                <div class="hm-view" id="hm-view"></div>
+              </div>
+
+              <div class="card">
+                <h2 class="card-title">Role Requirement Benchmark</h2>
+                <p class="card-sub">Job requirement vs. evidence in your resume — no invented candidate statistics.</p>
+                <div class="bench-table" id="bench-table"></div>
+                <p class="bench-note" id="bench-note"></p>
+              </div>
+
+              <div class="card">
+                <h2 class="card-title">What to fix first</h2>
+                <div class="priority-list" id="priority-list"></div>
+              </div>
+
+              <div class="card">
+                <h2 class="card-title">Rewrites</h2>
+                <p class="card-sub">Suggestions only. Nothing changes until you accept it — every rewrite uses only facts already in your resume.</p>
+                <div class="rewrite-list" id="rewrite-list"></div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ CAREER READINESS (Feature 2) ============ -->
+        <section class="view" id="view-career" data-view="career" aria-label="Career Readiness" hidden>
+          <div class="page-wrap" id="career-root"></div>
+        </section>
+
+        <!-- ============ APPLICATIONS / Application Agent (Feature 3) ============ -->
+        <section class="view" id="view-applications" data-view="applications" aria-label="Application Agent" hidden>
+          <div class="page-wrap" id="apps-root"></div>
+        </section>
+
+        <!-- ============ PROOF CENTER (Feature 4) ============ -->
+        <section class="view" id="view-proof" data-view="proof" aria-label="Proof Center" hidden>
+          <div class="page-wrap" id="proof-root"></div>
+        </section>
+
+        <!-- ============ AGENT ACTIVITY (visible agentic core) ============ -->
+        <section class="view" id="view-activity" data-view="activity" hidden>
+          <div class="page-wrap" id="activity-root"></div>
+        </section>
+
+        <!-- ============ COMPANY TARGET MODE ============ -->
+        <section class="view" id="view-target" data-view="target" aria-label="Company Target" hidden>
+          <div class="page-wrap" id="target-root"></div>
+        </section>
+
+        <!-- ============ SETTINGS ============ -->
+        <section class="view" id="view-settings" data-view="settings" aria-label="Settings" hidden>
+          <div class="settings-wrap">
+            <h1 class="screen-title">Settings</h1>
+
+            <div class="card">
+              <h2 class="card-title">Analysis</h2>
+              <label class="settings-row">
+                <span class="settings-row-text">
+                  <span class="settings-row-title">Brutally Honest</span>
+                  <span class="settings-row-sub">Direct, no-flattery feedback everywhere in the analysis.</span>
+                </span>
+                <input type="checkbox" id="settings-honest" />
+              </label>
+            </div>
+
+            <div class="card">
+              <h2 class="card-title">Your data</h2>
+              <p class="card-sub">Your resume and analysis live in your JobProof workspace on the server (SQLite) and in this browser as an offline copy. Delete here removes them from both.</p>
+              <div class="settings-actions">
+                <button class="btn btn-secondary btn-sm" id="settings-delete-resume" type="button">Delete my resume</button>
+                <button class="btn btn-secondary btn-sm" id="settings-delete-analysis" type="button">Delete my analysis</button>
+                <button class="btn btn-danger btn-sm" id="settings-delete-all" type="button">Delete everything</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2 class="card-title">Account</h2>
+              <p class="card-sub">Accounts and sync aren't part of Version 1. Everything currently works without one.</p>
+              <span class="soon-pill">Coming soon</span>
+            </div>
+
+            <div class="card">
+              <h2 class="card-title">About JobProof AI</h2>
+              <p class="card-sub">JobProof analyzes how your resume matches one specific job — transparently, on-device, and without invented claims. Version 1 focuses on Job Match &amp; Resume Intelligence; the career agent features come later.</p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Confirm modal (deletes etc.) -->
+  <div class="modal-overlay" id="confirm-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <h2 id="confirm-title" class="modal-title"></h2>
+      <p class="modal-text" id="confirm-text"></p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="confirm-cancel" type="button">Cancel</button>
+        <button class="btn btn-danger" id="confirm-ok" type="button"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit modal (rewrite editing) -->
+  <div class="modal-overlay" id="edit-overlay" hidden>
+    <div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="edit-title">
+      <h2 id="edit-title" class="modal-title">Edit rewrite</h2>
+      <p class="modal-text">Make it yours — keep it truthful to your actual experience.</p>
+      <textarea class="edit-textarea" id="edit-textarea" rows="4" aria-label="Edit rewritten bullet"></textarea>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="edit-cancel" type="button">Cancel</button>
+        <button class="btn btn-primary" id="edit-save" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Libraries -->
+  <script src="lib/pdf.min.js"></script>
+  <script src="lib/mammoth.browser.min.js"></script>
+  <!-- Core + backend client -->
+  <script src="js/core.js?v=6"></script>
+  <script src="js/api.js?v=2"></script>
+  <script src="js/taxonomy.js?v=5"></script>
+  <script src="js/roles.js?v=5"></script>
+  <!-- Parsing -->
+  <script src="js/fileio.js?v=6"></script>
+  <script src="js/parse.js?v=7"></script>
+  <script src="js/jd.js?v=5"></script>
+  <!-- Analysis -->
+  <script src="js/analysis.js?v=5"></script>
+  <script src="js/insights.js?v=5"></script>
+  <script src="js/rewrite.js?v=6"></script>
+  <script src="js/pipeline.js?v=6"></script>
+  <!-- Agents (Features 2–4) -->
+  <script src="js/github.js?v=5"></script>
+  <script src="js/verifier.js?v=5"></script>
+  <script src="js/missions.js?v=5"></script>
+  <script src="js/interview.js?v=6"></script>
+  <script src="js/agents.js?v=5"></script>
+  <script src="js/modals.js?v=5"></script>
+  <!-- Feature UIs -->
+  <script src="js/career.js?v=6"></script>
+  <script src="js/company.js?v=4"></script>
+  <script src="js/applications.js?v=5"></script>
+  <script src="js/proof.js?v=7"></script>
+  <script src="js/demo.js?v=5"></script>
+  <!-- UI -->
+  <script src="js/results.js?v=6"></script>
+  <script src="js/app.js?v=8"></script>
+</body>
+</html>

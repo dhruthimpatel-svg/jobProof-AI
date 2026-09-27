@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobProof AI — Prove You're Ready</title>
+  <meta name="description" content="Understand your fit for a job, find what is missing, and know exactly what to fix before you apply." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="icon" type="image/webp" href="assets/logo.webp" />
+</head>
+<body>
+  <div class="bg">
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4"
+        type="video/mp4"
+      />
+    </video>
+  </div>
+
+  <div class="page">
+    <!-- ============ HEADER ============ -->
+    <header class="site-header">
+      <div class="header-row">
+        <button class="logo-btn" type="button" aria-label="JobProof AI home" data-nav="home">
+          <img src="assets/logo.webp" alt="" width="52" height="52" />
+        </button>
+
+        <nav class="nav-pill" aria-label="Primary">
+          <a href="#" class="active" data-nav="home">Home</a>
+          <a href="#" data-nav="how">How It Works</a>
+          <a href="#" data-nav="features">Features</a>
+          <a href="#" data-nav="about">About</a>
+        </nav>
+
+        <button class="signin-btn" type="button" data-nav="signin">Sign In</button>
+
+        <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ============ MOBILE MENU ============ -->
+    <div class="menu-overlay" id="menu-overlay" hidden></div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile" hidden>
+      <a href="#" class="active" data-nav="home">Home</a>
+      <a href="#" data-nav="how" style="--d: 0.05s">How It Works</a>
+      <a href="#" data-nav="features" style="--d: 0.1s">Features</a>
+      <a href="#" data-nav="about" style="--d: 0.15s">About</a>
+      <button class="menu-signin" type="button" data-nav="signin" style="--d: 0.2s">Sign In</button>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <main class="hero">
+      <div class="product-signal anim" style="--d: 0.05s">
+        <span class="signal-index">01</span>
+        <span>Job Match &amp; Resume Intelligence</span>
+      </div>
+
+      <h1 class="headline">
+        <span class="line-1">Don't Just Claim It.</span>
+        <span class="line-2">Prove It.</span>
+      </h1>
+
+      <p class="subhead anim" style="--d: 0.28s">
+        Understand your fit for a job, find what is missing,
+        and know exactly what to fix before you apply.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta-primary anim" style="--d: 0.4s" href="app.html">Get Started</a>
+        <a class="cta-secondary anim" style="--d: 0.48s" href="#" data-nav="how">See How It Works</a>
+      </div>
+    </main>
+
+    <!-- ============ PRODUCT SIGNALS ============ -->
+    <footer class="signals">
+      <div class="signals-grid">
+        <div class="signal-item anim" style="--d: 0.5s">
+          <span class="signal-num">01</span>
+          <span class="signal-name">Role Match</span>
+        </div>
+        <div class="signal-item anim" style="--d: 0.58s">
+          <span class="signal-num">02</span>
+          <span class="signal-name">ATS Analysis</span>
+        </div>
+        <div class="signal-item anim" style="--d: 0.66s">
+          <span class="signal-num">03</span>
+          <span class="signal-name">Skill Evidence</span>
+        </div>
+        <div class="signal-item anim" style="--d: 0.74s">
+          <span class="signal-num">04</span>
+          <span class="signal-name">Actionable Gaps</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ============ CONTENT MODAL ============ -->
+  <div class="modal-overlay" id="jp-modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="jp-modal-title">
+      <button class="modal-close" type="button" aria-label="Close" data-modal-close>&times;</button>
+      <h2 id="jp-modal-title"></h2>
+      <div id="jp-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Hidden template for the How It Works modal body -->
+  <template id="how-content" hidden>
+    <ol class="modal-steps">
+      <li>
+        <strong>Upload your resume.</strong>
+        <span>PDF, DOCX or TXT. Parsed in your browser — nothing leaves your device.</span>
+      </li>
+      <li>
+        <strong>Add the job you're targeting.</strong>
+        <span>Paste the description, or a title and company.</span>
+      </li>
+      <li>
+        <strong>Get your fit analysis.</strong>
+        <span>Role match score, ATS readability, missing keywords, and a hiring manager's view — each point tied to real evidence from your resume.</span>
+      </li>
+      <li>
+        <strong>Fix what matters.</strong>
+        <span>Three priority fixes, honest rewrites of weak bullets, and accept / edit / keep on every suggestion.</span>
+      </li>
+    </ol>
+    <p class="modal-note">We never invent experience you don't have — and we'll tell you when there isn't enough evidence to judge.</p>
+    <a class="cta-primary modal-cta" href="app.html">Start an analysis</a>
+  </template>
+
+  <!-- ============ COMING SOON TOAST ============ -->
+  <div class="soon-overlay" id="soon-overlay" hidden>
+    <div class="soon-pill" role="status" aria-live="polite">✦ <span id="soon-msg">Coming soon</span></div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

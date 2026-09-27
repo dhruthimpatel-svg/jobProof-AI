@@ -1,0 +1,39 @@
+AI/ML Engineer — Growth Analytics
+
+At Northwind Labs, we build analytics products that help e-commerce companies understand shopper behavior. Our platform processes millions of events per day across 40+ retail brands.
+
+About the role
+
+As an AI/ML Engineer on the Growth Analytics team, you will design and ship machine learning models that power recommendation and churn prediction products used by our customers every day.
+
+What you'll be doing
+
+- Design, build, and deploy machine learning models for recommendation systems and churn prediction
+- Build and maintain data pipelines that move events from production systems into the modeling environment
+- Work with product managers and engineers to translate business questions into ML problems
+- Run experiments and A/B tests to measure model impact on retention and revenue
+- Monitor model performance in production and retrain models as data drifts
+- Mentor junior engineers through code reviews and pairing
+
+What we're looking for
+
+- 2+ years of professional experience shipping machine learning models
+- Strong Python skills; you write clean, testable code
+- Solid SQL and experience with large datasets
+- Hands-on experience with at least one deep learning framework (PyTorch or TensorFlow)
+- Experience deploying models to production (REST APIs, batch scoring, or streaming)
+- Experience with Docker and cloud platforms (AWS, GCP, or Azure)
+- A/B testing and experimentation fundamentals
+- Bachelor's degree in Computer Science, Engineering, or a related field
+
+Nice to have
+
+- Experience with Kafka or streaming data systems
+- Kubernetes and MLOps tooling
+- Airflow for pipeline orchestration
+- Recommender systems or NLP experience
+- Experience mentoring or leading small projects
+
+Benefits
+
+Competitive salary, equity, and full health coverage. Annual learning budget.

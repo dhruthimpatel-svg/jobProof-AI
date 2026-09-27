@@ -1,0 +1,44 @@
+Aarav Sharma
+Bengaluru, India | aarav.sharma@email.com | +91 98765 43210 | github.com/aaravsharma | linkedin.com/in/aaravsharma
+
+SUMMARY
+Hardworking and passionate about technology. Quick learner looking for opportunities in AI and machine learning where I can utilize my skills and grow.
+
+SKILLS
+Python, SQL, Machine Learning, Data Analysis, Pandas, NumPy, scikit-learn, Git, Excel, Tableau, Communication, Teamwork
+
+EXPERIENCE
+Data Analyst Intern — FinEdge Analytics
+Jun 2024 – Dec 2024
+- Worked on cleaning and analyzing customer transaction data using Python and Pandas.
+- Responsible for generating weekly sales reports in Tableau for the marketing team.
+- Built a churn analysis notebook that identified 3 customer segments for the retention team.
+- Assisted senior analysts with SQL queries for the monthly revenue dashboard.
+
+Freelance Tutor — Mathematics and Statistics
+Jan 2023 – May 2024
+- Taught statistics to 12 high school students, 8 of whom improved their grades by one letter.
+- Created practice worksheets and tracked student progress in spreadsheets.
+
+PROJECTS
+House Price Prediction
+- Built a regression model with scikit-learn on the Kaggle housing dataset with 1,460 rows.
+- Achieved 0.87 R-squared using feature engineering and gradient boosting.
+
+Sentiment Analysis of Product Reviews
+- Developed a text classification model using Python and scikit-learn on 5,000 product reviews.
+- Reached 89% accuracy with TF-IDF features and logistic regression.
+- Wrote documentation and published the code on GitHub.
+
+EDUCATION
+B.Tech in Computer Science, RV College of Engineering, Bengaluru
+2021 – 2025 (expected)
+CGPA: 8.6/10
+
+CERTIFICATIONS
+- Google Data Analytics Professional Certificate (Coursera), 2024
+- Machine Learning Specialization — Andrew Ng (Coursera), in progress
+
+ACHIEVEMENTS
+- Finalist, Smart India Hackathon 2023 (team of 6)
+- Dean's List, 2022 and 2023

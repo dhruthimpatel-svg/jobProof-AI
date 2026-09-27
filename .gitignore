@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+backend/data/
+tools/cloudflared.exe
+tools/*.exe
+agenticai.zip
+.DS_Store
+Thumbs.db

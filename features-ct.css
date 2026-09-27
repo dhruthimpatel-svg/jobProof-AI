@@ -1,0 +1,78 @@
+/* ============================================================
+   JobProof AI — Company Target Mode (additive styles)
+   Reuses the existing card/tab/pill system. Only new classes
+   below — nothing existing is modified.
+   ============================================================ */
+
+.ct-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ct-head-main { flex: 1 1 320px; }
+.ct-head-side {
+  flex: 0 1 340px;
+  border-left: 1px solid var(--line, #e5e5e5);
+  padding-left: 20px;
+}
+.ct-head-sub { font-size: 15px; margin-top: 2px; }
+.ct-next-title { font-weight: 600; margin: 4px 0; }
+
+/* Source labels: OFFICIAL / AI-INFERRED / EXTERNAL / REQUIRED etc. */
+.src-pill {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-right: 6px;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+.src-pill.is-official { background: #e8f0fe; color: #1a56c4; }
+.src-pill.is-inferred { background: #f3e8ff; color: #6d28d9; }
+.src-pill.is-required { background: #fdeaea; color: #b3261e; }
+.src-pill.is-recommended { background: #fff4dc; color: #92600a; }
+.src-pill.is-optional { background: #e8f4ec; color: #1e7d43; }
+
+/* Gap dots */
+.ct-gap-dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: 1px;
+}
+.dot-critical { background: #d93025; }
+.dot-partial { background: #f0a500; }
+.dot-covered { background: #1e8e3e; }
+
+/* Inline resume highlighting */
+.hl { cursor: default; border-radius: 4px; padding: 1px 3px; }
+.hl-weak { background: #fdeaea; box-shadow: inset 0 -1.5px 0 #d93025; cursor: pointer; }
+.hl-req { background: #fff4dc; box-shadow: inset 0 -1.5px 0 #d97706; cursor: pointer; }
+.hl-strong { background: #e8f4ec; box-shadow: inset 0 -1.5px 0 #1e8e3e; }
+mark.hl { color: inherit; }
+
+/* Targeted version + editor */
+.ct-details { margin-top: 8px; }
+.ct-details summary { cursor: pointer; font-weight: 600; }
+.ct-pre {
+  white-space: pre-wrap;
+  font: 13px/1.6 var(--mono, ui-monospace, monospace);
+  background: #f7f7f8;
+  border: 1px solid var(--line, #e5e5e5);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+}
+.ct-form .fld { margin-bottom: 10px; }
+.ct-editor { margin-top: 10px; }
+.ct-editor .fld { margin-bottom: 10px; }
+
+@media (max-width: 760px) {
+  .ct-head { flex-direction: column; }
+  .ct-head-side { border-left: none; padding-left: 0; border-top: 1px solid var(--line, #e5e5e5); padding-top: 14px; }
+}

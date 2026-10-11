@@ -183,12 +183,17 @@
         window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
         return;
       }
+      if (key === "signin") {
+        e.preventDefault();
+        setMenu(false);
+        showSoon(el.getAttribute("data-soon") || "Accounts are coming soon — for now, everything works without one.");
+        return;
+      }
       if (key === "how" || key === "features" || key === "about") {
         e.preventDefault();
         setMenu(false);
         openModal(key);
       }
-      // "signin" handled by data-soon above.
     });
   });
 })();
